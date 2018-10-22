@@ -8,6 +8,7 @@
     $slug4Geeks = $_GET['school3'];
 
     //Imagenes para cada curso
+    $imgSchool3 = 'https://assets-alesanchezr.c9users.io/apis/course-report/logos/'.$school3.'.png';
     $imgSchool2 = 'https://assets-alesanchezr.c9users.io/apis/course-report/logos/'.$school2.'.png';
     $imgSchool1 = 'https://assets-alesanchezr.c9users.io/apis/course-report/logos/'.$school1.'.png';
 ?>
@@ -71,49 +72,52 @@
         <div class="col-lg-12">
         <div class="search-table-outter">
             <table class="table table-lg">
+
+            
                     <tr>
-                    <th  class="bg-grey-menu" style="border-top-style: solid !important; border-top-width: 2px !important; border-top-color: #b2b2b3 !important;">
-                        <div class="bg-features">
-                            <img src="./assets/img/codigo-10.png" alt="" class="rounded mx-auto d-block img-features">
+                    <th  class="bg-grey-text-menu" style="border-top-style: solid !important; border-top-width: 2px !important; border-top-color: #b2b2b3 !important;">
+                        <div class="bg-features" style="background-image:url('./assets/img/codigo-10.png');">
                         </div>
                     </th>
-                    <th>
+                    <th></th>
+                    <th class="">    
                         <div class="bg-bootcamp-4geeks">
-                            <img src="./assets/img/4geeks-logo-white.png" alt="" class="rounded mx-auto d-block img-comparations">
+                            <div class="bootcamp-logo" style="background-image: url('<?php echo $imgSchool3 ?>');"></div>
                             <div class="triangule1"></div>
                             <div class="div-select" style="text-align: center;">
                                 <select class="custom-select">
-                                    <option selected>4Geeks Academy</option>
+                                    <option selected="">4Geeks Academy</option>
                                 </select>
                             </div>
                         </div>
                     </th>
-                    <th>
-                        <div class="bg-bootcamp-others">
-                            <img src="./assets/img/ironhack.png" alt="" class="rounded mx-auto d-block img-comparations">
-                            <div class="triangule2"></div>
+                    <th class="">    
+                        <div class="bg-bootcamp-4geeks">
+                            <div class="bootcamp-logo" style="background-image: url('<?php echo $imgSchool2 ?>');"></div>
+                            <div class="triangule1"></div>
                             <div class="div-select" style="text-align: center;">
-                                    <select id="select2" class="custom-select" onchange="change()">
-                                        <option selected><?php echo $school2?></option>
-                                        <?php
-                                            $url = 'https://assets-alesanchezr.c9users.io/apis/course-report/schools';
-                                            $schools = file_get_contents($url);
-                                            $dataSchools = json_decode($schools);
+                                <select id="select2" class="custom-select" onchange="change()">
+                                    <option selected><?php echo $school2?></option>
+                                    <?php
+                                        $url = 'https://assets-alesanchezr.c9users.io/apis/course-report/schools';
+                                        $schools = file_get_contents($url);
+                                        $dataSchools = json_decode($schools);
 
-                                            foreach($dataSchools as $key => $com){
-                                                if($key != '4geeks' && $key != $school2 && $key != $school1) {?>
-                                                    <option value="<?php echo $key?>"><?php echo $key?></option>
-                                                <?php }
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
+                                        foreach($dataSchools as $key => $com){
+                                            if($key != '4geeks' && $key != $school2 && $key != $school1) {?>
+                                                <option value="<?php echo $key?>"><?php echo $key?></option>
+                                            <?php }
+                                        }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </th>
-                    <th scope="col">
-                        <div class="bg-bootcamp-others">
-                            <img src="./assets/img/wyncode.png" alt="" class="rounded mx-auto d-block img-comparations">
-                            <div class="triangule3"></div>
+
+                    <th class="">    
+                        <div class="bg-bootcamp-4geeks">
+                            <div class="bootcamp-logo" style="background-image: url('<?php echo $imgSchool1 ?>');"></div>
+                            <div class="triangule1"></div>
                             <div class="div-select" style="text-align: center;">
                                 <select id="select1" class="custom-select" onchange="change()">
                                     <option selected><?php echo $school1?></option>
@@ -123,7 +127,7 @@
                                         $dataSchools = json_decode($schools);
 
                                         foreach($dataSchools as $key => $com){
-                                            if($key != '4geeks' && $key != $school1 && $key != $school2) {?>
+                                            if($key != '4geeks' && $key != $school2 && $key != $school1) {?>
                                                 <option value="<?php echo $key?>"><?php echo $key?></option>
                                             <?php }
                                         }
@@ -134,9 +138,10 @@
                     </th>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                        </th>
-                        <td class="width-table">
+                        <td scope="row" class="bg-grey-text-menu">
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="bg-grey-shape">
                                 <div class="triangule-white1" ></div>
                             </div>
@@ -158,12 +163,15 @@
                         $comparisonCombinationArray = json_decode($dataComparison);
                     ?>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Price</p>
-                        </th>
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Price</p>
+                            </div>
+                        </td>
+                        <td></td>
                         <?php foreach($comparisonCombinationArray as $key => $com){ 
                             if($key == $school3){?>
-                            <td class="width-table">
+                            <td>
                                 <div class="justify-text bg-white">
                                     <div>
                                         <p>Avg usd price monthly: <?php echo $com->price->avg_usd_price_monthly ?></p>
@@ -179,7 +187,7 @@
                         
                         <?php foreach($comparisonCombinationArray as $key => $com){ 
                             if($key == $school2){?>
-                            <td class="width-table">
+                            <td>
                                 <div class="justify-text bg-white">
                                     <div>
                                         <p>Avg usd price monthly: <?php echo $com->price->avg_usd_price_monthly ?></p>
@@ -195,7 +203,7 @@
 
                         <?php foreach($comparisonCombinationArray as $key => $com){ 
                             if($key == $school1){?>
-                            <td class="width-table">
+                            <td>
                                 <div class="justify-text bg-white">
                                     <div>
                                         <p>Avg usd price monthly: <?php echo $com->price->avg_usd_price_monthly ?></p>
@@ -210,56 +218,62 @@
                         } ?>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Focus</p>
-                        </th>
-
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
-                                <div>
-                                    <p class="text-center">
-                                        <?php foreach($comparisonCombinationArray as $key => $com){
-                                            if($key == $school3){
-                                                if (is_array($com->focus)){
-                                                    foreach($com->focus as $d){
-                                                        echo $d.' ';
-                                                    }
-                                                }else{
-                                                    echo $com->focus;
-                                                }
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Focus</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td class="bg-grey">
+                            <div>
+                                <div class="justify-text">
+                                    <div>
                                         
+                                            <?php foreach($comparisonCombinationArray as $key => $com){
+                                                if($key == $school3){
+                                                    if (is_array($com->focus)){
+                                                        foreach($com->focus as $d){?>
+                                                            <p><?php echo $d.' ';?></p> <?php
+                                                        }
+                                                    }else{?>
+                                                        <p><?php echo $com->focus;?></p> <?php
+                                                    }
+                                            
+                                                }
                                             }
-                                        }
-                                        ?>
-                                    </p>
+                                            ?>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </td>
 
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
-                                <div>
-                                    <p class="text-center">
-                                        <?php foreach($comparisonCombinationArray as $key => $com){
-                                            if($key == $school2){
-                                                if (is_array($com->focus)){
-                                                    foreach($com->focus as $d){
-                                                        echo $d.' ';
+                        <td class="bg-grey">
+                            <div>
+                                <div class="justify-text">
+                                    <div>
+                                        <p class="text-center">
+                                            <?php foreach($comparisonCombinationArray as $key => $com){
+                                                if($key == $school2){
+                                                    if (is_array($com->focus)){
+                                                        foreach($com->focus as $d){
+                                                            echo $d.' ';
+                                                        }
+                                                    }else{
+                                                        echo $com->focus;
                                                     }
-                                                }else{
-                                                    echo $com->focus;
+                                            
                                                 }
-                                        
                                             }
-                                        }
-                                        ?>
-                                    </p>
+                                            ?>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </td>
 
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <p>
                                     <?php foreach($comparisonCombinationArray as $key => $com){
                                         if($key == $school1){
@@ -279,13 +293,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Time commitment</p>
-                        </th>
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Time commitment</p>
+                            </div>
+                        </td>
+                        <td></td>
                         <?php foreach($comparisonCombinationArray as $key => $com){
                             if($key == $school3){
                             foreach($com->time_commitment as $data){?>
-                            <td class="width-table">
+                            <td >
                                 <div class="justify-text bg-white">
                                     <div>
                                         <p><?php echo $data ?></p>
@@ -298,7 +315,7 @@
                         <?php foreach($comparisonCombinationArray as $key => $com){
                             if($key == $school2){
                             foreach($com->time_commitment as $data){?>
-                            <td class="width-table">
+                            <td >
                                 <div class="justify-text bg-white">
                                     <div>
                                         <p><?php echo $data ?></p>
@@ -311,7 +328,7 @@
                         <?php foreach($comparisonCombinationArray as $key => $com){
                             if($key == $school1){
                             foreach($com->time_commitment as $data){?>
-                            <td class="width-table">
+                            <td >
                                 <div class="justify-text bg-white">
                                     <div>
                                         <p><?php echo $data ?></p>
@@ -323,51 +340,193 @@
                         } ?>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Learning-style</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
-                                <p>Hola</p>
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Learning-style</p>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
-                                <p>Hola</p>
-                            </div>
-                        </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
-                                <p>Hola</p>
-                            </div>
-                        </td>
+                        <td></td>
+                        <?php foreach($comparisonCombinationArray as $key => $com){
+                            if($key == $school1){
+                                $data = (array) $com;
+                                ?>
+                            <td class="bg-grey">
+                                <div class="justify-text">
+                                    <div>
+                                <?php 
+                                    if($data["learning-style"]->one_on_one_mentorship){
+                                ?>
+                                        <p>One on one mentorship</p>
+                                <?php
+                                    }
+                                    if($data["learning-style"]->online_exercises){
+                                ?>
+                                        <p>Online Exercises</p>
+                                <?php
+                                    }
+                                    if($data["learning-style"]->description){
+                                ?>
+                                        <p><?php echo $data["learning-style"]->description?></p>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
+                                </div>
+                            </td>
+                        <?php 
+                                
+                            }
+                        } ?>
+
+                        <?php foreach($comparisonCombinationArray as $key => $com){
+                            if($key == $school2){
+                                $data = (array) $com;
+                                ?>
+                            <td class="bg-grey">
+                                <div class="justify-text">
+                                    <div>
+                                <?php 
+                                    if($data["learning-style"]->one_on_one_mentorship){
+                                ?>
+                                        <p>One on one mentorship</p>
+                                <?php
+                                    }
+                                    if($data["learning-style"]->online_exercises){
+                                ?>
+                                        <p>Online Exercises</p>
+                                <?php
+                                    }
+                                    if($data["learning-style"]->description){
+                                ?>
+                                        <p><?php echo $data["learning-style"]->description?></p>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
+                                </div>
+                            </td>
+                        <?php 
+                                
+                            }
+                        } ?>
+
+                        <?php foreach($comparisonCombinationArray as $key => $com){
+                            if($key == $school1){
+                                $data = (array) $com;
+                                ?>
+                            <td class="bg-grey">
+                                <div class="justify-text">
+                                    <div>
+                                <?php 
+                                    if($data["learning-style"]->one_on_one_mentorship){
+                                ?>
+                                        <p>One on one mentorship</p>
+                                <?php
+                                    }
+                                    if($data["learning-style"]->online_exercises){
+                                ?>
+                                        <p>Online Exercises</p>
+                                <?php
+                                    }
+                                    if($data["learning-style"]->description){
+                                ?>
+                                        <p><?php echo $data["learning-style"]->description?></p>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
+                                </div>
+                            </td>
+                        <?php 
+                                
+                            }
+                        } ?>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Online-platform</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-white">
-                                <p>Hola</p>
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Online-platform</p>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-white">
-                                <p>Hola</p>
-                            </div>
-                        </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-white">
-                                <p>Hola</p>
-                            </div>
-                        </td>
+                        <td></td>
+                        <?php foreach($comparisonCombinationArray as $key => $com){
+                            if($key == $school1){
+                                $data = (array) $com;
+                                ?>
+                            <td>
+                                <div class="justify-text bg-white">
+                                    <div class="online-platform">
+                                <?php 
+                                    if($data["online-platform"]){
+                                ?>
+                                        <i class="fas fa-check text-center"></i>
+                                        <p>Propietary</p>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
+                                </div>
+                            </td>
+                        <?php 
+                                
+                            }
+                        } ?>
+
+                        <?php foreach($comparisonCombinationArray as $key => $com){
+                            if($key == $school2){
+                                $data = (array) $com;
+                                ?>
+                            <td>
+                                <div class="justify-text bg-white">
+                                    <div class="online-platform">
+                                <?php 
+                                    if($data["online-platform"]){
+                                ?>
+                                        <i class="fas fa-check text-center"></i>
+                                        <p>Propietary</p>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
+                                </div>
+                            </td>
+                        <?php 
+                                
+                            }
+                        } ?>
+
+                        <?php foreach($comparisonCombinationArray as $key => $com){
+                            if($key == $school3){
+                                $data = (array) $com;
+                                ?>
+                            <td>
+                                <div class="justify-text bg-white">
+                                    <div class="online-platform">
+                                <?php 
+                                    if($data["online-platform"]){
+                                ?>
+                                        <i class="fas fa-check text-center"></i>
+                                        <p>Propietary</p>
+                                <?php
+                                    }
+                                ?>
+                                    </div>
+                                </div>
+                            </td>
+                        <?php 
+                                
+                            }
+                        } ?>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Syllabus</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Syllabus</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td class="bg-grey">
+                            <div class="justify-text ">
                                 <div>
                                     <p>Topics:
                                         <?php foreach($comparisonCombinationArray as $key => $com){
@@ -380,8 +539,6 @@
                                                             echo $d;
                                                         }
                                                     }
-                                                // $separado_por_comas = implode(",", $com->syllabus->topics);
-                                                // ?> <?php //echo $separado_por_comas;?> <?php // apellido,email,teléfono
                                             }
                                         } ?>
                                     </p>
@@ -396,16 +553,14 @@
                                                             echo $d;
                                                         }
                                                     }
-                                                // $separado_por_comas = implode(",", $com->syllabus->topics);
-                                                // ?> <?php //echo $separado_por_comas;?> <?php // apellido,email,teléfono
                                             }
                                         } ?>
                                     </p>
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text ">
                                 <div>
                                 <p>Topics:
                                 <?php foreach($comparisonCombinationArray as $key => $com){
@@ -418,8 +573,6 @@
                                                     echo $d;
                                                 }
                                             }
-                                        // $separado_por_comas = implode(",", $com->syllabus->topics);
-                                        // ?> <?php //echo $separado_por_comas;?> <?php // apellido,email,teléfono
                                     }
                                 } ?>
                                 </p>
@@ -434,16 +587,14 @@
                                                         echo $d;
                                                     }
                                                 }
-                                            // $separado_por_comas = implode(",", $com->syllabus->topics);
-                                            // ?> <?php //echo $separado_por_comas;?> <?php // apellido,email,teléfono
                                         }
                                     } ?>
                                 </p>
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text ">
                                 <div>
                                 <p>Topics:
                                 <?php foreach($comparisonCombinationArray as $key => $com){
@@ -456,8 +607,6 @@
                                                     echo $d;
                                                 }
                                             }
-                                        // $separado_por_comas = implode(",", $com->syllabus->topics);
-                                        // ?> <?php //echo $separado_por_comas;?> <?php // apellido,email,teléfono
                                     }
                                 } ?>
                                 </p>
@@ -472,8 +621,6 @@
                                                         echo $d;
                                                     }
                                                 }
-                                            // $separado_por_comas = implode(",", $com->syllabus->topics);
-                                            // ?> <?php //echo $separado_por_comas;?> <?php // apellido,email,teléfono
                                         }
                                     } ?>
                                 </p>
@@ -482,10 +629,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Mentors</p>
-                        </th>
-                        <td class="width-table">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Mentors</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -500,7 +650,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -515,7 +665,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                             <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -532,66 +682,69 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Job guarantee</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Job guarantee</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school3){
                                             if($com->job_guarantee->refund){
                                                 ?><p>Refund: <i class="fas fa-check"></i></p><?php
                                             }else{
-                                                ?><p>Refund:</p><?php
+                                                ?><p>Refund: <i class="fas fa-times"></i></p><?php
                                             };
 
                                             if($com->job_guarantee->defered){
                                                 ?><p>Defered: <i class="fas fa-check"></i></p><?php
                                             }else{
-                                                ?><p>Defered:</p><?php
+                                                ?><p>Defered: <i class="fas fa-times"></i></p><?php
                                             };
                                         }
                                     }?>
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school2){
                                             if($com->job_guarantee->refund){
                                                 ?><p>Refund: <i class="fas fa-check"></i></p><?php
                                             }else{
-                                                ?><p>Refund:</p><?php
+                                                ?><p>Refund: <i class="fas fa-times"></i></p><?php
                                             };
 
                                             if($com->job_guarantee->defered){
                                                 ?><p>Defered: <i class="fas fa-check"></i></p><?php
                                             }else{
-                                                ?><p>Defered:</p><?php
+                                                ?><p>Defered: <i class="fas fa-times"></i></p><?php
                                             };
                                         }
                                     }?>
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school1){
                                             if($com->job_guarantee->refund){
                                                 ?><p>Refund: <i class="fas fa-check"></i></p><?php
                                             }else{
-                                                ?><p>Refund:</p><?php
+                                                ?><p>Refund: <i class="fas fa-times"></i></p><?php
                                             };
 
                                             if($com->job_guarantee->defered){
                                                 ?><p>Defered: <i class="fas fa-check"></i></p><?php
                                             }else{
-                                                ?><p>Defered:</p><?php
+                                                ?><p>Defered: <i class="fas fa-times"></i></p><?php
                                             };
                                         }
                                     }?>
@@ -600,10 +753,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Placement rate</p>
-                        </th>
-                        <td class="width-table">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Placement rate</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -614,7 +770,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -625,7 +781,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -638,11 +794,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Post graduate support</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Post graduate support</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school3){
@@ -656,8 +815,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school2){
@@ -671,8 +830,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school1){
@@ -688,10 +847,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Pre-work</p>
-                        </th>
-                        <td class="width-table">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Pre-work</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -712,7 +874,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -733,7 +895,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -756,11 +918,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Scolarships</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Scolarships</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school3){
@@ -784,8 +949,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school2){
@@ -809,8 +974,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school1){
@@ -836,10 +1001,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Application process</p>
-                        </th>
-                        <td class="width-table">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Application process</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -870,7 +1038,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -901,7 +1069,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
@@ -933,11 +1101,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu">
-                            <p class="title">Reviews</p>
-                        </th>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td scope="row" class="title-row bg-grey-text-menu">
+                            <div class="section-title">
+                                <p class="title">Reviews</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school3){?>
@@ -950,8 +1121,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school2){?>
@@ -964,8 +1135,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
-                            <div class="justify-text bg-grey">
+                        <td class="bg-grey">
+                            <div class="justify-text">
                                 <div>
                                 <?php foreach($comparisonCombinationArray as $key => $com){ 
                                         if($key == $school1){?>
@@ -980,10 +1151,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="title-row bg-grey-text-menu-down">
-                            <p class="title-last">Cities</p>
-                        </th>
-                        <td class="width-table">
+                        <td scope="row" class="title-row bg-grey-text-menu-down">
+                            <div class="section-title-last">
+                                <p class="title-last">Cities</p>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <p>
@@ -1004,7 +1178,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <p>
@@ -1025,7 +1199,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="justify-text bg-white">
                                 <div>
                                     <p>
@@ -1048,18 +1222,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">
+                        <td scope="row">
                             
-                        </th>
-                        <td class="width-table">
+                        </td>
+                        <td></td>
+                        <td >
                             <div class="last-bg-grey">
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="last-bg-grey">
                             </div>
                         </td>
-                        <td class="width-table">
+                        <td >
                             <div class="last-bg-grey">
                             </div>
                         </td>
@@ -1069,70 +1244,17 @@
         </div>
     </div>
 
-
-    <!-- <div class="container">
-        <div class="row sect-comparations">
-            <div class="col-md-12 title-banner">
-                <h2 class="text-center">Explore popular comparisons</h2>
-            </div>
-            <?php
-                $url = 'https://assets-alesanchezr.c9users.io/apis/course-report/compare/full-stack?schools='.$school1.','.$school2.','.$school3;
-                $dataComparison = file_get_contents($url);
-                $comparisonCombinationArray = json_decode($dataComparison);
-                ?>
-                <div class="col-md-12 px-2 pt-2">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Bootcamp</th>
-                                <?php foreach($comparisonCombinationArray as $key => $com){ ?>
-                                <th scope="col"><?php echo $key?></th>
-                                <?php } ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row">programs</th>
-                            <?php foreach($comparisonCombinationArray as $com){ ?>
-                                <td><?php echo $com->program_slug?></td>
-                            <?php } ?>
-                            </tr>
-                            <tr>
-                            <th scope="row">cities</th>
-                            <?php foreach($comparisonCombinationArray as $com){ ?>
-                                <td>
-                                <?php foreach($com->cities as $key => $city){?>
-                                    <li style="list-style:none">
-                                        <p><?php echo $city?></p>
-                                    </li>
-                                <?php } ?>
-                                </td>
-                            <?php } ?>
-                            </tr>
-                            <tr>
-                                <th scope="row">financing</th>
-                                <?php foreach($comparisonCombinationArray as $com){ ?>
-                                    <?php if($com->price->financing){?>
-                                        <td>yes</td>
-                                    <?php }else{?>
-                                        <td>no</td>
-                                    <?php }?>
-                                <?php } ?>
-                            </tr>
-                        </tbody>
-                        </table>
-                    </div>
-            
-        </div>
-    </div> -->
-
     <footer>
         <script>            
-            // let defaultSelect1 = document.getElementById("select1");
-            // console.log(defaultSelect1.value);
+            window.onload = function(){
+                let x = document.querySelectorAll("tr td:nth-child(3)");
+                let y = document.querySelectorAll("tr td:first-child");
 
-            // let defaultSelect2 = document.getElementById("select2");
-            // console.log(defaultSelect2.value);
+                let i;
+                for (i = 0; i < x.length; i++) {
+                    y[i].style.height = x[i].offsetHeight;
+                }
+            }
 
             function change(){
                 let bootcamp1 = document.getElementById("select1");
